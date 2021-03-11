@@ -11,17 +11,32 @@ app.use(express.json());
 
 const tables = [
     {
-        routeName: "/tables",
         customerName: "",
         phoneNumber: "",
-        customerEmail: "customerID",
+        customerEmail: "",
+        customerID: "",
     }
 ]
 
+const waitList = [
+    {
+        customerName: "",
+        phoneNumber: "",
+        customerEmail: "",
+        customerID: "", 
+    }
+]
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'home.html')));
 
-app.get('/add', (req, res) => res.sendFile(path.join(__dirname, 'reserve.html')));
+app.get('/reserve', (req, res) => res.sendFile(path.join(__dirname, 'reserve.html')));
 
-app.get('/add', (req, res) => res.sendFile(path.join(__dirname, 'tables.html')));
+app.get('/tables', (req, res) => res.sendFile(path.join(__dirname, 'tables.html')));
+
+app.get('/api/tables', (req, res) => res.json(tables));
+
+app.get('/api/reserve', (req, res) => res.json(tables));
+
+
+
 
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
