@@ -97,8 +97,9 @@
         })
           .then((response) => response.json())
           .then((name) => {
-            console.log('tables.html', name);
-            alert(`Adding Reservation: ${name}`);
+              console.log('tables.html')
+            console.log(name);
+            alert(`Adding Reservation: ${name[name.length - 1].name}`);
           })
           .catch((error) => {
             console.error('Error:', error);
