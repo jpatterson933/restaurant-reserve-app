@@ -26,6 +26,8 @@ const waitList = [
         customerID: "", 
     }
 ]
+
+// tables.filter((item, index) => index > 5 && item)
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'home.html')));
 
 app.get('/reserve', (req, res) => res.sendFile(path.join(__dirname, 'reserve.html')));

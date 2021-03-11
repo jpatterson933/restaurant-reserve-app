@@ -67,6 +67,43 @@
         </p> 
     </div>
     </footer>
+
+    <script type="text/javascript">
+
+    fetch('/api/tables', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+              console.log(data);
+              
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+            fetch('/api/reserve', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => response.json())
+          .then((data) => {
+              console.log(data);
+              
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+
+
+       
+    </script>
 </div>
 </body>
 </html>
