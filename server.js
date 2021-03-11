@@ -15,7 +15,7 @@ const tables = [
         phoneNumber: "",
         customerEmail: "",
         customerID: "",
-    }
+    },
 ]
 
 const waitList = [
@@ -34,9 +34,21 @@ app.get('/tables', (req, res) => res.sendFile(path.join(__dirname, 'tables.html'
 
 app.get('/api/tables', (req, res) => res.json(tables));
 
-app.get('/api/reserve', (req, res) => res.json(tables));
+app.get('/api/reserve', (req, res) => res.json(waitList));
 
-
+app.post('/api/tables', (req, res) => {
+   
+    const newReservation = req.body;
+  
+    if(tables.length > 4 ) {
+        waitList.push(newReservation)
+        res.json(waitList)
+    }
+    else {
+        tables.push(newReservation);
+        res.json(tables);
+    }
+  });
 
 
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
