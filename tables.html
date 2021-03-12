@@ -43,7 +43,7 @@
                 <ul id="tableList" class="list-group">
                     <!--this is our list-->
                     <li class="list-group-item mt-4" id="table-list">
-                        <li id="test"></li>
+                        
                     </li>   
                 </ul>
             </div>
@@ -54,7 +54,7 @@
         </div>
         <div class="card-body">
             <ul id="waitList" class="list-group">
-                <li class="list-group-item mt-4">
+                <li class="list-group-item mt-4" id="wait-list">
                 </li>
             </ul>
         </div>
@@ -66,7 +66,7 @@
     <div class="container">
         <p>
             <a href="/api/tables">Table Link</a>
-            <a href="/api/waitlist">Wait List</a>
+            <a href="/api/tables/waitlist">Wait List</a>
         </p> 
     </div>
     </footer>
@@ -89,7 +89,49 @@
           //so conceptually by giving the paramters different names, we can do differnt things? maybe?
           .then((data) => {
               console.log(data);
-              console.log(data[1].name)
+            //   console.log(data[1].customerName)
+
+              const tableList = $('#tableList');
+              const listGroup = $('#table-list');
+              for(var i= 0; i < data.length; i++) {
+                let name = $('<h2>');
+                let phone = $('<p>');
+                let email = $('<p>');
+                let ID = $('<p>');
+                
+                name.text(data[i].customerName);
+                phone.text(data[i].phoneNumber);
+                email.text(data[i].customerEmail);
+                ID.text(data[i].customerID);
+
+                listGroup.append(name);
+                listGroup.append(phone);
+                listGroup.append(email);
+                listGroup.append(ID);
+
+                tableList.append(listGroup);
+              }
+
+              const waitList = $('#waitlist');
+              const listGroup2 = $('#wait-list');
+              for(var i= 0; i < data.length; i++) {
+                let name = $('<h2>');
+                let phone = $('<p>');
+                let email = $('<p>');
+                let ID = $('<p>');
+                
+                name.text(data[i].customerName);
+                phone.text(data[i].phoneNumber);
+                email.text(data[i].customerEmail);
+                ID.text(data[i].customerID);
+
+                listGroup2.append(name);
+                listGroup2.append(phone);
+                listGroup2.append(email);
+                listGroup2.append(ID);
+
+                waitList.append(listGroup);
+              }
               
             })
             //our catch for errors
@@ -97,7 +139,7 @@
                 console.error('Error:', error);
             });
             //a second fetch call for our reservations api
-            fetch('/api/reserve', {
+            fetch('/api/tables/waitlist', {
                 //our method here to GET data so it can later be parsed thorugh in the responses..?
           method: 'GET',
           headers: {
@@ -118,7 +160,6 @@
             });
 
     </script>
-</div>
 </body>
 </html>
 

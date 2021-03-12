@@ -52,17 +52,20 @@ app.get('/tables', (req, res) => res.sendFile(path.join(__dirname, 'tables.html'
 
 //when the response matches /api/tables, it will grab the tables parse through the data and return the response as json
 app.get('/api/tables', (req, res) => res.json(tables));
-app.get('/api/reserve', (req, res) => res.json(waitList));
+app.get('/api/tables/waitlist', (req, res) => res.json(waitList));
+
 
 //this is our post request  that will run a callback function to make newReservations when the req.body receives data
+
+
 app.post('/api/tables', (req, res) => {
    
     const newReservation = req.body;
 
   //if our tables length is greater to four, it will push any new reservations into the waitlist
     if(tables.length > 4 ) {
-        waitList.push(newReservation)
-        res.json(waitList)
+        waitList.push(newReservation);
+        res.json(waitList);
     }
     else {
         tables.push(newReservation);
