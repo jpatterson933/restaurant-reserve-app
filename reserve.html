@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservations Page</title>
+    <!--boostrap stylesheet links-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <!--jquery script-->
     <script src="https://code.jquery.com/jquery.js"></script>
+    <!--boostrap scripts-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -63,7 +66,9 @@
 <footer class="footer">
     <div class="container">
         <p>
+            <!--links to our api for table reservations-->
             <a href="/api/tables">Table Link</a>
+            <!--links to our api for our reservations that oveflow our tables and land on the waitlist-->
             <a href="/api/waitlist">Wait List</a>
         </p> 
     </div>
@@ -71,39 +76,49 @@
 </div>
 
 <script>
+    //grabbing our button
     const btn = document.getElementById("grabBtn")
-
+    //adding an event listener that will prevent default on click through e
     btn.addEventListener("click", function (e) {
         e.preventDefault();
-
+        /*here we are setting our variables in a local function scoped, 
+        grabbing values from input, and trimming white space*/
         let name = document.getElementById('reserve-name').value.trim();
         let phone = document.getElementById('reserve-phone').value.trim();
         let email = document.getElementById('reserve-email').value.trim();
         let id = document.getElementById('reserve-id').value.trim();
 
+        //create a new object for new reservations
         let newReservation = {
           name: name,
           phone: parseInt(phone),
           email: email,
           reserveId: parseInt(id),
         };
-
+        //this fetches all our data stored in our api/tables
         fetch('/api/tables', {
-          method: 'POST',
-          headers: {
+            //the method we are using with our fetch call is a POST method with our data that will post to api/tables
+            method: 'POST',
+            //headers is a simply multi-map with names and values
+            headers: {
             'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(newReservation),
+            },
+            //this returns a promise and puts it into a string using the JSON stringify method - the promise is not resolved until the body recives content
+            body: JSON.stringify(newReservation),
         })
-          .then((response) => response.json())
-          .then((name) => {
-              console.log('tables.html')
+            /*our first then that returns the response and uses json to parse through the data 
+            (our response come from the fetch method that posts to the body from the stringifed new reservation)*/
+            .then((response) => response.json())
+            //NOT SURE WHAT THIS DOES...
+            .then((name) => {
+                console.log('tables.html')
             console.log(name);
             alert(`Adding Reservation: ${name[name.length - 1].name}`);
-          })
-          .catch((error) => {
+            })
+            //we catch our error here
+            .catch((error) => {
             console.error('Error:', error);
-          });
+            });
       });
 
         
