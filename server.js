@@ -6,7 +6,7 @@ const path = require('path');
 // Sets up the Express App
 const app = express();
 // this sets our port at 3000
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 /*You NEED express.json() and express.urlencoded() for POST and PUT requests, 
 because in both these requests you are sending data (in the form of some data object) 
