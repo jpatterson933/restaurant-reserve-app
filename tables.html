@@ -70,39 +70,48 @@
 
     <script type="text/javascript">
 
+        //our fetch method to GET data from api/tables
     fetch('/api/tables', {
+        //the method we are using here is GET 
+        /* When the method is GET, all form data is encoded into the URL, 
+        appended to the action URL as query string parameters.*/
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
         })
+        //our first then that returns a respone and uses json to parse through the data
           .then((response) => response.json())
+          //BASICALLY, the idea behind chaining then() is that the results are passed through the parameter, 
+          //so conceptually by giving the paramters different names, we can do differnt things? maybe?
           .then((data) => {
               console.log(data);
               
             })
+            //our catch for errors
             .catch((error) => {
                 console.error('Error:', error);
             });
-
+            //a second fetch call for our reservations api
             fetch('/api/reserve', {
+                //our method here to GET data so it can later be parsed thorugh in the responses..?
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
         })
+            //first chained then that parses through the responses
           .then((response) => response.json())
+          //second then that console logs the responses/data 
           .then((data) => {
               console.log(data);
               
             })
+            //our catch for errors
             .catch((error) => {
                 console.error('Error:', error);
             });
 
-
-
-       
     </script>
 </div>
 </body>
