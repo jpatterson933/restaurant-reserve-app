@@ -46,19 +46,20 @@ app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'home.html')));
                 sets the Content-Type response HTTP header field based on the filename extension.*/
 app.get('/reserve', (req, res) => res.sendFile(path.join(__dirname, 'reserve.html')));  
 
-                                              //the path parameter defines the path. Here we take the file path from
-                                              //C and join it with tables.html file  
+                                              /*the path parameter defines the path. Here we take the file path from
+                                              C and join it with tables.html file */
 app.get('/tables', (req, res) => res.sendFile(path.join(__dirname, 'tables.html')));
 
+//when the response matches /api/tables, it will grab the tables parse through the data and return the response as json
 app.get('/api/tables', (req, res) => res.json(tables));
-
 app.get('/api/reserve', (req, res) => res.json(waitList));
 
-//this is our post request 
+//this is our post request  that will run a callback function to make newReservations when the req.body receives data
 app.post('/api/tables', (req, res) => {
    
     const newReservation = req.body;
-  
+
+  //if our tables length is greater to four, it will push any new reservations into the waitlist
     if(tables.length > 4 ) {
         waitList.push(newReservation)
         res.json(waitList)
@@ -69,5 +70,5 @@ app.post('/api/tables', (req, res) => {
     }
   });
 
-
+//this makes sure, using express, that the defined PORT is being listedn to and we console log that to make sure the server is running
 app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));

@@ -109,10 +109,11 @@
             /*our first then that returns the response and uses json to parse through the data 
             (our response come from the fetch method that posts to the body from the stringifed new reservation)*/
             .then((response) => response.json())
-            //NOT SURE WHAT THIS DOES...
+            //this chain passes the respones through the parameter and renames the parameter to name..
             .then((name) => {
                 console.log('tables.html')
             console.log(name);
+            //sends an alert to the user that their reservation is being added
             alert(`Adding Reservation: ${name[name.length - 1].name}`);
             })
             //we catch our error here
@@ -120,13 +121,6 @@
             console.error('Error:', error);
             });
       });
-
-        
-
-
-
-
-    
 
 
 </script>
