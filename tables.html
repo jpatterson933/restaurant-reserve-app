@@ -43,6 +43,7 @@
                 <ul id="tableList" class="list-group">
                     <!--this is our list-->
                     <li class="list-group-item mt-4" id="table-list">
+                        <li id="test"></li>
                     </li>   
                 </ul>
             </div>
@@ -88,6 +89,7 @@
           //so conceptually by giving the paramters different names, we can do differnt things? maybe?
           .then((data) => {
               console.log(data);
+              console.log(data[1].name)
               
             })
             //our catch for errors
@@ -107,6 +109,7 @@
           //second then that console logs the responses/data 
           .then((data) => {
               console.log(data);
+       
               
             })
             //our catch for errors

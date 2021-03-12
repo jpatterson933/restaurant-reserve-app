@@ -90,10 +90,10 @@
 
         //create a new object for new reservations
         let newReservation = {
-          name: name,
-          phone: parseInt(phone),
-          email: email,
-          reserveId: parseInt(id),
+          customerName: name,
+          phoneNumber: parseInt(phone),
+          customerEmail: email,
+          customerID: parseInt(id),
         };
         //this fetches all our data stored in our api/tables
         fetch('/api/tables', {
@@ -114,7 +114,7 @@
                 console.log('tables.html')
             console.log(name);
             //sends an alert to the user that their reservation is being added
-            alert(`Adding Reservation: ${name[name.length - 1].name}`);
+            alert(`Adding Reservation: ${name[name.length - 1].customerName}`);
             })
             //we catch our error here
             .catch((error) => {
